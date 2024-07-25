@@ -1,5 +1,5 @@
 
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ProductData } from '../dataType/dataType';
 import { Dispatch } from 'redux';
 

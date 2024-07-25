@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
-import logo from './logo.svg';
 import styles from './App.module.css';
 import Header from './components/header/header';
 import SalesView from './components/salesView/salesView';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from './store/store';
-import { fetchProductData, setData } from './store/appSlice';
+import { fetchProductData } from './store/appSlice';
 import ProductView from './components/productView/productView';
 import ProductDetails from './components/ProductDetails/productDetails';
 
