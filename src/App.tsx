@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import logo from './logo.svg';
 import styles from './App.module.css';
-import Header from './header/header';
-import FetchJSON from './components/fetchJSON';
-import SalesView from './components/salesview';
+import Header from './components/header/header';
+import SalesView from './components/salesView/salesView';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from './store/store';
-import { fetchProductData } from './store/appSlice';
-import ProductView from './components/productView';
+import { fetchProductData, setData } from './store/appSlice';
+import ProductView from './components/productView/productView';
+import ProductDetails from './components/ProductDetails/productDetails';
 
 const App: React.FC = () => {
 	const dispatch = useDispatch<AppDispatch>();
@@ -28,8 +28,9 @@ const App: React.FC = () => {
 			<div className={styles.productOverviewSection}>
 					<ProductView />
 				</div>
-				<div className={"productDetailSection"}>
-					
+				<div className={styles.productDetailSection}>
+					<SalesView/>
+					<ProductDetails/>
 				</div>
 			</div>
 		</div>

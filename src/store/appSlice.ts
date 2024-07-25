@@ -26,7 +26,7 @@ export const fetchProductData =  () => {
 				throw new Error('Failed to fetch data from json file');
 			}
 			const data = await response.json();
-			dispatch({ type: 'FETCH_PRODUCTS_SUCCESS', payload: data });
+			dispatch(setData(data[0]));
 		} catch (error) {
 			dispatch({ type: 'FETCH_PRODUCTS_SUCCESS', payload: "" });
 		}

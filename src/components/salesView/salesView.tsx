@@ -1,8 +1,10 @@
 import { Chart as ChartJS, ChartOptions, registerables } from 'chart.js';
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
 import { Line } from 'react-chartjs-2';
-import { useAppSelector } from '../store/hooks';
-import { SalesData } from '../dataType/dataType';
+import { useAppSelector } from '../../store/hooks';
+import { SalesData } from '../../dataType/dataType';
+import 'chartjs-adapter-moment';
+import styles from './salesView.module.css';
 
 const verticalLinePlugin = {
 	id: 'verticalLinePlugin',
@@ -31,7 +33,8 @@ ChartJS.register(...registerables);
 ChartJS.register(verticalLinePlugin);
 
 const SalesView: React.FC = () => {
-	const salesData = useAppSelector((state) => state.slice.sales);
+	const salesData = useAppSelector((state) => state.product.sales);
+	const ref = useRef<any>(null);
 
 	const { labels, retailSales, wholesaleSales, maxSales, minSales } = useMemo(
 		() => getSalesDataByDay(salesData),
@@ -106,9 +109,18 @@ const SalesView: React.FC = () => {
 		maintainAspectRatio: false,
 	};
 
+	useEffect(() => {
+		if (ref.current) {
+		  const chartInstance = ref.current.chartInstance;
+		  if (chartInstance) {
+			chartInstance.destroy();
+		  }
+		}
+	  }, [salesData]); // Clean up when salesData changes
+
 	return (
-		<div className={"sales"}>
-			<Line options={options} data={chartData} />
+		<div className={styles.salesView}>
+			<Line ref = {ref} options={options} data={chartData} />
 		</div>
 	);
 };

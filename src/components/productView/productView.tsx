@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './ProductView.module.css';
-import { useAppSelector } from '../store/hooks';
+import { useAppSelector } from '../../store/hooks';
 
 const ProductView: React.FC = () => {
 	const product = useAppSelector((state) => state.product);
